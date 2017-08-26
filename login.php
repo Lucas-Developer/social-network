@@ -3,7 +3,11 @@
 
 	if (isset($_POST['entrar'])) {
 		$email = $_POST['email'];
-		$pass = $_POST['pass'];
+		$email=strtr($email, ''', '*');
+		
+	        $pass = $_POST['pass'];
+		$pass=strtr($pass, ''', '*');
+		
 		$verifica = mysql_query("SELECT * FROM users WHERE email = '$email' AND password='$pass'");
 		if (mysql_num_rows($verifica)<=0) {
 			echo "<h3>Palavra-passe ou e-mail errados!</h3>";
